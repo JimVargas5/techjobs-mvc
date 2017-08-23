@@ -37,6 +37,21 @@
     <hr />
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <div th:if="${relevantJobs} and ${relevantJobs.size()} ?: 'nothin'">
+        <h3 th:text="${relevantJobs.size()}+' job(s) found bebe'"></h3>
+        <p th:if="${dumdum}">This is just a list of everything you fool.</p>
+        <div>
+            <table th:each="job : ${relevantJobs}" class="job-listing">
+                <tr th:each="element, idx : ${job}" th:class="${idx.odd} ? 'odd'">
+                    <td th:text="${element.key}"></td>
+                    <td th:text="${element.value}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:unless="${relevantJobs} and ${relevantJobs.size()}">
+        <p>I ain't got nothin' for you.</p>
+    </div>
 
 </div>
 
